@@ -28,6 +28,7 @@ module.exports.signIn = async (req, res) => {
     try {
       const user = await UserModel.login(email, password);
       const token = createToken(user._id);
+    //   Pour afficher le cookie
       res.cookie("jwt", token, {
         httpOnly: true,
         maxAge: MaxAge
@@ -40,4 +41,16 @@ module.exports.signIn = async (req, res) => {
   
 
 // Logout
-module.exports.logout = (req, res) => {};
+module.exports.logout = (req, res) => {
+    res.cookie("jwt", "", { maxAge: 1 });
+    res.redirect("/");
+}
+
+// Logout avec ChatGPT
+// module.exports.logout = (req, res) => {
+//     res.cookie("jwt", "", { maxAge: 1 });
+//     res.status(200).json({ message: "Logout successful" });
+// }
+
+
+
