@@ -19,6 +19,7 @@ const PostSchema = new mongoose.Schema(
          },
         likers: {
         type: [String],
+        required: true,
         },
         comments: {
         type: [
